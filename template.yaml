@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Formation template
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  HelloWorld:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/index.handler
+      Runtime: nodejs16.x
+      MemorySize: 256
+      Timeout: 900
+      Events:
+        PostHealth:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
